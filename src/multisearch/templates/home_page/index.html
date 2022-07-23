@@ -40,14 +40,21 @@
           <h1>MultiSearch</h1>
         </div>
         <div class="about-user">
-          <div class="about-user__items">
-            <span class="user-item">Your IP:</span>
-            <span class="user-item">127.0.0.1</span>
+          <div style="display: flex; flex-direction: row">
+            <div class="about-user__items">
+              <span class="user-item">Your IP:</span>
+              <span class="user-item decor-under">127.0.0.1</span>
+            </div>
+            <div class="about-user__items">
+              <span class="user-item">Your popular request:</span>
+              <span class="user-item decor-under">Why im idiot?</span>
+            </div>
           </div>
-          <div class="about-user__items">
-            <span class="user-item">Your popular request:</span>
-            <span class="user-item">Why im idiot?</span>
-          </div>
+          <img
+            src="{{ url_for('static', path='images/terraria_tree.png') }}"
+            alt=""
+            style="width: 77px; height: 143px"
+          />
         </div>
         <div class="search-bar">
           <input
@@ -57,16 +64,18 @@
           />
           <a href="#" class="search-bar__magnifier unselectable">
             <svg
-              viewBox="0 0 512 512"
+              width="37"
+              height="37"
+              viewBox="0 0 37 37"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M256 64C150.13 64 64 150.13 64 256C64 361.87 150.13 448 256 448C361.87 448 448 361.87 448 256C448 150.13 361.87 64 256 64ZM347.31 347.31C344.31 350.308 340.242 351.993 336 351.993C331.758 351.993 327.69 350.308 324.69 347.31L281.85 304.48C263.752 316.934 241.652 322.175 219.889 319.174C198.125 316.173 178.269 305.148 164.216 288.261C150.163 271.374 142.928 249.845 143.931 227.898C144.934 205.952 154.103 185.172 169.638 169.638C185.172 154.103 205.952 144.934 227.898 143.931C249.845 142.928 271.374 150.163 288.261 164.216C305.148 178.269 316.173 198.125 319.174 219.889C322.175 241.652 316.934 263.752 304.48 281.85L347.31 324.69C350.308 327.69 351.993 331.758 351.993 336C351.993 340.242 350.308 344.31 347.31 347.31V347.31Z"
+                d="M18.5 0C8.29898 0 0 8.29898 0 18.5C0 28.701 8.29898 37 18.5 37C28.701 37 37 28.701 37 18.5C37 8.29898 28.701 0 18.5 0ZM27.2981 27.2981C27.009 27.587 26.617 27.7493 26.2083 27.7493C25.7996 27.7493 25.4077 27.587 25.1186 27.2981L20.9908 23.1712C19.2469 24.3712 17.1175 24.8762 15.0205 24.5871C12.9235 24.2979 11.0103 23.2356 9.65623 21.6084C8.30217 19.9813 7.60507 17.9069 7.70172 15.7923C7.79836 13.6776 8.68178 11.6754 10.1786 10.1786C11.6754 8.68178 13.6776 7.79836 15.7923 7.70172C17.9069 7.60507 19.9813 8.30217 21.6084 9.65623C23.2356 11.0103 24.2979 12.9235 24.5871 15.0205C24.8762 17.1175 24.3712 19.2469 23.1712 20.9908L27.2981 25.1186C27.587 25.4077 27.7493 25.7996 27.7493 26.2083C27.7493 26.617 27.587 27.009 27.2981 27.2981Z"
                 fill="#B4CE7C"
               />
               <path
-                d="M232 288C262.928 288 288 262.928 288 232C288 201.072 262.928 176 232 176C201.072 176 176 201.072 176 232C176 262.928 201.072 288 232 288Z"
+                d="M16.1875 21.5833C19.1675 21.5833 21.5833 19.1675 21.5833 16.1875C21.5833 13.2075 19.1675 10.7917 16.1875 10.7917C13.2074 10.7917 10.7916 13.2075 10.7916 16.1875C10.7916 19.1675 13.2074 21.5833 16.1875 21.5833Z"
                 fill="#B4CE7C"
               />
             </svg>
@@ -76,26 +85,24 @@
           <div class="feed-element">
             <h2>Search engines included for search</h2>
             <div class="feed-engine__items feed-font decor-g">
-              <div class="items">
-                <div class="item">Google</div>
-                <div class="item">Bing</div>
+              <div class="feed-items">
+                <div class="feed-item">Google</div>
+                <div class="feed-item">Bing</div>
               </div>
-              <div class="items">
-                <div class="item">Yandex</div>
-                <div class="item">Yahoo</div>
+              <div class="feed-items">
+                <div class="feed-item">Yandex</div>
+                <div class="feed-item">Yahoo</div>
               </div>
-              <div class="items">
-                <div class="item">DuckDuckGo</div>
-                <div class="item">Who????</div>
+              <div class="feed-items">
+                <div class="feed-item">DuckDuckGo</div>
+                <div class="feed-item">Who????</div>
               </div>
             </div>
           </div>
           <div class="feed-element">
             <h2>A few recent requests</h2>
             <div class="feed-requests__items feed-font decor-g">
-              <div class="item">Why im idiot?</div>
-              <!-- <div class="item">test 1</div>
-              <div class="item">test 1</div> -->
+              <div class="feed-item">Why im idiot?</div>
             </div>
           </div>
         </div>
@@ -104,11 +111,17 @@
         >
       </div>
       <footer class="footer">
-        Built with&nbsp;<span class="decor-r">❤︎</span>&nbsp;by&nbsp;<span
-          class="decor-r"
-          >ov3rwrite</span
-        >,&nbsp;
-        <span class="decor-r">uewquewqueqwue</span>
+        <div class="footer-title" style="margin-bottom: 10px">
+          Built with&nbsp;<span class="decor-r">❤︎</span>&nbsp;by&nbsp;<span
+            class="decor-r"
+            >ov3rwrite</span
+          >,&nbsp;
+          <span class="decor-r">uewquewqueqwue</span>
+        </div>
+        <div class="footer-items">
+          <a href="#" class="footer-item decor-under">source</a>
+          <a href="#" class="footer-item decor-under">license</a>
+        </div>
       </footer>
     </div>
   </body>

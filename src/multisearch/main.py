@@ -14,7 +14,6 @@ TEMPLATES_DIR_NAME = "templates"
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / TEMPLATES_DIR_NAME))
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
-# app.mount("/images", StaticFiles(directory="static/images"), name="images")
 
 @api_router.get("/", response_class=HTMLResponse)
 def homepage(request: Request):
