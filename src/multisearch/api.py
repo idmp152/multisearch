@@ -12,7 +12,7 @@ def request_all_engines(query: str) -> list[QueryResponse]:
         response_list.extend(requester.request_query(query))
     return response_list
 
-@api_router.get("/search/", response_model=list[QueryResponse])
+@api_router.get("/search", response_model=list[QueryResponse])
 async def get_results(query: str,
             search_engine: AvailableSearchEngines = None) -> list[QueryResponse]:
     """Gets a list of results by a search query."""
