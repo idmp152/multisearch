@@ -1,0 +1,79 @@
+.main {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  width: 1450px;
+
+  margin: 50px auto 0;
+}
+.upper-content {
+  margin: 0 auto 100px;
+}
+.about-user {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  width: 1024px;
+}
+.about-user__items {
+  display: flex;
+
+  margin-left: 30px;
+  margin-bottom: 15px;
+}
+.user-item {
+  font-size: 1.8em;
+
+  margin-right: 15px;
+}
+.user-item:nth-child(2) {
+  margin-right: 20px;
+
+  font-family: "Fira Sans";
+}
+.search-engine {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin-bottom: 50px;
+}
+.search-engine:nth-last-child(1) {
+  margin-bottom: 50px;
+}
+.engine {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  /* width: 1450px; */
+  height: 100%;
+}
+.engine-block {
+  display: flex;
+  flex-direction: column;
+
+  width: 250px;
+}
+.engine-name {
+  font-size: 3em;
+
+  margin-bottom: 15px;
+}
+.engine-title {
+  font-size: 2em;
+  font-family: "Fira Sans";
+
+  margin-bottom: 10px;
+}
+.engine-description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  font-size: 1.6em;
+}

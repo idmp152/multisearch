@@ -14,6 +14,10 @@
       rel="stylesheet"
       href="{{ url_for('static', path='styles/homepage.css') }}"
     />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='styles/common.css') }}"
+    />
     <!-- <link rel="icon" href="images/.ico" type="image/x-icon" sizes="64x64 32x32 24x24 16x16" > -->
     <link
       rel="icon"
@@ -30,6 +34,18 @@
     <title>MultiSearch</title>
   </head>
   <body>
+    <script>
+      function test() {
+        let request = new XMLHttpRequest();
+        let el = "?query=" + document.getElementById("search-bar-input").value;
+        request.open("GET", el, true);
+        request.onreadystatechange = function () {
+          if (request.readyState == 4 && request.status == 200)
+            window.open("/search/" + el, "_parent");
+        };
+        request.send(null);
+      }
+    </script>
     <div class="wrapper">
       <div class="main">
         <div class="logo">
@@ -56,13 +72,17 @@
             style="width: 77px; height: 143px"
           />
         </div>
-        <div class="search-bar">
+        <div class="search-bar" style="margin-bottom: 50px">
           <input
             class="search-bar__input"
             placeholder="Search..."
             type="text"
+            id="search-bar-input"
           />
-          <a href="#" class="search-bar__magnifier unselectable">
+          <a
+            onclick="javascript:test()"
+            class="search-bar__magnifier unselectable"
+          >
             <svg
               width="37"
               height="37"
@@ -110,19 +130,7 @@
           >see the full list...</a
         >
       </div>
-      <footer class="footer">
-        <div class="footer-title" style="margin-bottom: 10px">
-          Built with&nbsp;<span class="decor-r">❤︎</span>&nbsp;by&nbsp;<span
-            class="decor-r"
-            >ov3rwrite</span
-          >,&nbsp;
-          <span class="decor-r">uewquewqueqwue</span>
-        </div>
-        <div class="footer-items">
-          <a href="#" class="footer-item decor-under">source</a>
-          <a href="#" class="footer-item decor-under">license</a>
-        </div>
-      </footer>
+      {% include 'footer.html' %}
     </div>
   </body>
 </html>

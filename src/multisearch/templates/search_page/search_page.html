@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="MultiSearch engine" content="Welcome to multiSearch engine" />
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#191919" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='styles/searchpage.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='styles/common.css') }}"
+    />
+    <!-- <link rel="icon" href="images/.ico" type="image/x-icon" sizes="64x64 32x32 24x24 16x16" > -->
+    <link
+      rel="icon"
+      href="{{ url_for('static', path='images/logo_page.png') }}"
+      type="image/png"
+      sizes="192x192"
+    />
+    <link
+      rel="icon"
+      href="{{ url_for('static', path='images/logo_page.png') }}"
+      type="image/png"
+      sizes="512x512"
+    />
+    <title>MultiSearch</title>
+  </head>
+  <body>
+    <script>
+      // $(document).keypress(function (event) {
+      //   if (event.keyCode == 13) {
+      //     $("#Enter").click(); //OR $("#Enter").trigger('click');
+      //   }
+      // });
+      function enterKeyPressed(event) {
+        if (event.keyCode == 13) {
+          console.log("Enter key is pressed");
+          return true;
+        } else {
+          return false;
+        }
+      }
+      function test() {
+        let request = new XMLHttpRequest();
+        let el = "?query=" + document.getElementById("search-bar-input").value;
+        request.open("GET", el, true);
+        let link = document.getElementById("url");
+        link.setAttribute("href", "/search/" + el);
+        request.onreadystatechange = function () {
+          if (request.readyState == 4 && request.status == 200)
+            window.open("/search/" + el, "_parent");
+        };
+        request.send(null);
+      }
+    </script>
+    <div class="wrapper">
+      <div class="main">
+        <div class="upper-content">
+          <div class="search-bar" style="margin-bottom: 15px">
+            <input
+              class="search-bar__input"
+              placeholder="Search..."
+              type="text"
+              id="search-bar-input"
+            />
+            <a
+              onclick="javascript:test()"
+              class="search-bar__magnifier unselectable"
+              href=""
+              id="url"
+              onkeypress="return enterKeyPressed(event)"
+            >
+              <svg
+                width="37"
+                height="37"
+                viewBox="0 0 37 37"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.5 0C8.29898 0 0 8.29898 0 18.5C0 28.701 8.29898 37 18.5 37C28.701 37 37 28.701 37 18.5C37 8.29898 28.701 0 18.5 0ZM27.2981 27.2981C27.009 27.587 26.617 27.7493 26.2083 27.7493C25.7996 27.7493 25.4077 27.587 25.1186 27.2981L20.9908 23.1712C19.2469 24.3712 17.1175 24.8762 15.0205 24.5871C12.9235 24.2979 11.0103 23.2356 9.65623 21.6084C8.30217 19.9813 7.60507 17.9069 7.70172 15.7923C7.79836 13.6776 8.68178 11.6754 10.1786 10.1786C11.6754 8.68178 13.6776 7.79836 15.7923 7.70172C17.9069 7.60507 19.9813 8.30217 21.6084 9.65623C23.2356 11.0103 24.2979 12.9235 24.5871 15.0205C24.8762 17.1175 24.3712 19.2469 23.1712 20.9908L27.2981 25.1186C27.587 25.4077 27.7493 25.7996 27.7493 26.2083C27.7493 26.617 27.587 27.009 27.2981 27.2981Z"
+                  fill="#B4CE7C"
+                />
+                <path
+                  d="M16.1875 21.5833C19.1675 21.5833 21.5833 19.1675 21.5833 16.1875C21.5833 13.2075 19.1675 10.7917 16.1875 10.7917C13.2074 10.7917 10.7916 13.2075 10.7916 16.1875C10.7916 19.1675 13.2074 21.5833 16.1875 21.5833Z"
+                  fill="#B4CE7C"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="about-user">
+            <div class="about-user__items">
+              <span class="user-item">Your IP:</span>
+              <span class="user-item decor-under">127.0.0.1</span>
+              <span class="user-item">Your popular request:</span>
+              <span class="user-item decor-under">Why im idiot?</span>
+            </div>
+            <a href="/" class="user-item decor-under" style="margin-right: 30px"
+              >To home</a
+            >
+          </div>
+        </div>
+        <div class="engine">
+          {% for engine, item in answer | groupby('engine') %}
+          <div class="engine-block">
+            <div class="engine-name">{{ engine|capitalize }}</div>
+            <div class="search-engine">
+              {% for j in item %}
+              <div class="engine-title decor-under">{{ j.title }}</div>
+              <div class="engine-description">
+                <span> {{ j.description }} </span>
+                <a href="{{ j.url }}" target="_blank">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.375 14H1.75C1.28587 14 0.840752 13.8156 0.512563 13.4874C0.184374 13.1592 0 12.7141 0 12.25V2.625C0 2.16087 0.184374 1.71575 0.512563 1.38756C0.840752 1.05937 1.28587 0.875 1.75 0.875H5.25V2.625H1.75V12.25H11.375V8.75H13.125V12.25C13.125 12.7141 12.9406 13.1592 12.6124 13.4874C12.2842 13.8156 11.8391 14 11.375 14ZM6.7375 8.49362L5.50375 7.25638L11.0101 1.75H7.875V0H14V6.125H12.25V2.98812L6.7375 8.49362V8.49362Z"
+                      fill="#B4CE7C"
+                    />
+                  </svg>
+                </a>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% include 'footer.html' %}
+    </div>
+  </body>
+</html>

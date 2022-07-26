@@ -1,18 +1,23 @@
 from enum import Enum
 import abc
-import random
 
-from frozendict import frozendict # type: ignore
+# import random
 
-from models import QueryResponse # type: ignore
+from frozendict import frozendict  # type: ignore
+
+from models import QueryResponse  # type: ignore
+
 
 class AvailableSearchEngines(str, Enum):
     """Available search engines enum."""
+
     GOOGLE = "google"
     YANDEX = "yandex"
 
+
 class IRequester(abc.ABC):
     """Requester interface"""
+
     @staticmethod
     @abc.abstractmethod
     def request_query(query: str) -> list[QueryResponse]:
@@ -21,35 +26,41 @@ class IRequester(abc.ABC):
 
 class GoogleRequester(IRequester):
     """Google requester implementation"""
+
     @staticmethod
     def request_query(query: str) -> list[QueryResponse]:
         responses = []
-        for _ in range(random.randint(0, 10)):
+        for _ in range(5):
             response = QueryResponse(
-                title="This is a Google response",
+                title="REQ",
                 description=f"Lorem {query} dolor sit amet",
                 url="https://www.google.com/",
-                engine=AvailableSearchEngines.GOOGLE
+                engine=AvailableSearchEngines.GOOGLE,
             )
             responses.append(response)
         return responses
+
 
 class YandexRequester(IRequester):
     """Yandex requester implementation"""
+
     @staticmethod
     def request_query(query: str) -> list[QueryResponse]:
         responses = []
-        for _ in range(random.randint(0, 10)):
+        for _ in range(5):
             response = QueryResponse(
-                title="This is a Yandex response",
+                title="REQ",
                 description=f"Lorem {query} dolor sit amet",
                 url="https://www.yandex.ru/",
-                engine=AvailableSearchEngines.YANDEX
+                engine=AvailableSearchEngines.YANDEX,
             )
             responses.append(response)
         return responses
 
-REQUESTERS: frozendict[AvailableSearchEngines, IRequester] = frozendict({
-    AvailableSearchEngines.GOOGLE: GoogleRequester,
-    AvailableSearchEngines.YANDEX: YandexRequester
-})
+
+REQUESTERS: frozendict[AvailableSearchEngines, IRequester] = frozendict(
+    {
+        AvailableSearchEngines.GOOGLE: GoogleRequester,
+        AvailableSearchEngines.YANDEX: YandexRequester,
+    }
+)
